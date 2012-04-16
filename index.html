@@ -110,7 +110,11 @@
               <button type="button" id="submit">Load</button>
           </div>
         </div>
-
+        <br/>
+        <br/>
+        <br/>
+        <p>How does this search work? Lets first understand what the loop invariant here is. Let 'i' be the index into the query string at some point of time when the range in the grid is (s,e). Remember that we are walking the search query backwards. The loop invariant is that Q[i:] is the prefix of all strings in the range (s,e). To prove that that is indeed the case, lets move one more character on the query. Consider the characters on the BWT for the indices between s and e. All these characters occur before the prefix Q[i:] on the actual string. The rank data structure enables us to quickly check if any of those characters are the character we want to match. If yes we get the start and end rank of the character. Note that if the character is not present in that range, the start and end rank of the character would be same, ending our search. Then we use the property of BWT described above to jump to the corresponding character on the first row and continue our search. Thus when we exhaust all the characters in the query, we are left with the range on the grid where the prefix of every row is the query.</p>
+        <p>On the next post in this series, we will describe how to find the BWT index of a very long string efficiently.</p>
       </div>
       <div class="span-7 last">
         <h3>Links</h3>
