@@ -138,16 +138,15 @@ SuffixGrid.prototype.setRange = function(start, end, callback) {
 SuffixGrid.prototype.showRanks = function(start, end, alph) {
     if (this.startRank === undefined || this.startRank === null) {
         this.startRankText = this.paper.text(10, 10, "Rank of  xx : yy  ");
-        this.startRank = this.paper.popup(this.x + this.width, this.y + this.cellWidth/2, this.startRankText, "right");
+        this.startRank = this.paper.popup(this.x + this.width, this.y, this.startRankText, "right");
         this.startRank.prevY = this.y;
     }
 
     if (this.endRank === undefined || this.endRank === null) {
         this.endRankText = this.paper.text(10, 10, "Rank of xx : yy  ");
-        this.endRank = this.paper.popup(this.x + this.width, this.y + this.cellWidth/2, this.endRankText, "right"); 
+        this.endRank = this.paper.popup(this.x + this.width, this.y, this.endRankText, "right"); 
         this.endRank.prevY = this.y;
     }
-    console.log("Start bbox x: " + this.startRankText.getBBox().x + " y: " + this.startRankText.getBBox().y);
     var startRank = this.ranks[start][alph];
     if (startRank !== undefined)
         this.startRankText.attr("text", "Rank of "+ alph + " : " + startRank);
@@ -159,14 +158,27 @@ SuffixGrid.prototype.showRanks = function(start, end, alph) {
     else
         this.endRankText.attr("text", alph + " not present");
     
-    this.startRank.translate(0, this.y+this.cellHeight*start - this.startRank.prevY, 1000);
-    this.endRank.translate(0, this.y+this.cellHeight*end - this.endRank.prevY);
+    this.startRank.show().translate(0, this.y+this.cellHeight*start - this.startRank.prevY, 1000);
+    this.endRank.show().translate(0, this.y+this.cellHeight*end - this.endRank.prevY);
     
-    this.startRankText.translate(0, this.y+this.cellHeight*start - this.startRank.prevY);
-    this.endRankText.translate(0, this.y+this.cellHeight*end - this.endRank.prevY);
+    this.startRankText.show().translate(0, this.y+this.cellHeight*start - this.startRank.prevY);
+    this.endRankText.show().translate(0, this.y+this.cellHeight*end - this.endRank.prevY);
     
     this.startRank.prevY = this.y+this.cellHeight*start;
     this.endRank.prevY = this.y+this.cellHeight*end;
+};
+
+/**
+ * Hide rank tooltips
+ */
+SuffixGrid.prototype.hideRanks = function() {
+    if (this.startRank !== undefined && this.startRank !== null) {
+        this.startRank.hide();
+        this.endRank.hide();
+        
+        this.startRankText.hide();
+        this.endRankText.hide();
+    }
 };
 
 /**

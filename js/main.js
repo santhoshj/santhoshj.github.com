@@ -5,7 +5,7 @@
 $(document).ready(function() {
     bwtView = new BWTView("bwt");
     loadText("abracadabra$");
-    loadQuery("ada");
+    loadQuery("dab");
     $('#play').click(playhandler);
     $('#step').click(stephandler);
     $('#submit').click(submithandler);
@@ -65,6 +65,7 @@ function stephandler() {
  */
 function startSearch(play) {
     $("#status").html("");
+    bwtView.grid.hideRanks();
     var next = query[queryPosition];
     bwtView.query.setActive(queryPosition);
     range = bwtIndex.start(next);
@@ -86,7 +87,7 @@ function delayedAdvance(play) {
     if (play === undefined || play === null)
         play = true;
     if (queryPosition >= 0)
-        bwtView.grid.showRanks(range.start, range.end-1, query[queryPosition]);
+        bwtView.grid.showRanks(range.start, range.end, query[queryPosition]);
     setTimeout(function() {
         advance(play);
     }, 1000);

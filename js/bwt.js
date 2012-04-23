@@ -63,6 +63,8 @@ BWTIndex.prototype.advance = function(start, end, alphabet) {
         return null;
     var startRank = this.ranks[start][alphabet];
     var endRank = this.ranks[end][alphabet];
+    if (startRank >= endRank)
+        return null;
     var newStart = this.cmap.getStart(alphabet) + startRank;
     var newEnd = this.cmap.getStart(alphabet) + endRank;
     return {start:newStart, end:newEnd};
