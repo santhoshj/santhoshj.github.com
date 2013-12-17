@@ -1,0 +1,10 @@
+title:        "Home"
+tagline:      "Santhosh's Home Page"
+url:          http://santhoshj.in
+author:
+  name:       "Santhosh Kumar"
+  email:      "santhu.j@gmail.com"
+markdown:     rdiscount
+permalink:    pretty
+pygments:     true
+paginate:     5
